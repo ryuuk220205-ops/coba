@@ -1,0 +1,502 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Angle - Makanan Herbal Alami</title>
+    <style>
+        /* Reset dan Base Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: 'Arial', sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background-color: #f9f9f9;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header dan Navigasi */
+        header {
+            background-color: #D2691E; /* Warna jahe */
+            color: #fff;
+            padding: 10px 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .logo {
+            font-size: 24px;
+            font-weight: bold;
+        }
+        .nav-links {
+            list-style: none;
+            display: flex;
+        }
+        .nav-links li {
+            margin-left: 20px;
+        }
+        .nav-links a {
+            color: #fff;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+        .nav-links a:hover {
+            color: #FFD700; /* Warna lemon */
+        }
+        .menu-toggle {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+        }
+        .menu-toggle span {
+            width: 25px;
+            height: 3px;
+            background-color: #fff;
+            margin: 3px 0;
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, #D2691E, #FFD700);
+            color: #fff;
+            padding: 150px 0 100px;
+            text-align: center;
+            animation: fadeIn 1s ease-in;
+        }
+        .hero h1 {
+            font-size: 48px;
+            margin-bottom: 20px;
+            font-weight: bold;
+        }
+        .hero p {
+            font-size: 20px;
+            margin-bottom: 30px;
+        }
+        .btn {
+            background-color: #fff;
+            color: #D2691E;
+            padding: 12px 24px;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: bold;
+            transition: background-color 0.3s;
+        }
+        .btn:hover {
+            background-color: #FFD700;
+        }
+
+        /* Sections */
+        section {
+            padding: 80px 0;
+            animation: slideUp 1s ease-in;
+        }
+        section h2 {
+            font-size: 36px;
+            margin-bottom: 40px;
+            text-align: center;
+            color: #D2691E;
+            font-weight: bold;
+        }
+        section p {
+            font-size: 16px;
+            margin-bottom: 20px;
+        }
+
+        /* Tentang Brand */
+        .about {
+            background-color: #fff;
+        }
+        .about-content {
+            display: flex;
+            align-items: center;
+            gap: 40px;
+        }
+        .about-text {
+            flex: 1;
+        }
+        .about-image {
+            flex: 1;
+            text-align: center;
+        }
+        .about-image img {
+            max-width: 100%;
+            border-radius: 10px;
+        }
+
+        /* Produk */
+        .products {
+            background-color: #f9f9f9;
+        }
+        .product-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+        .product-card {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            text-align: center;
+        }
+        .product-card img {
+            max-width: 100%;
+            height: 200px;
+            object-fit: cover;
+            border-radius: 10px;
+            margin-bottom: 15px;
+        }
+        .product-card h3 {
+            font-size: 24px;
+            margin-bottom: 10px;
+            color: #D2691E;
+        }
+        .product-card .highlights {
+            font-weight: bold;
+            color: #FFD700;
+            margin-bottom: 10px;
+        }
+
+        /* Visi & Misi */
+        .vision-mission {
+            background-color: #fff;
+        }
+        .vm-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+        }
+        .vm-item {
+            padding: 20px;
+            background-color: #f9f9f9;
+            border-radius: 10px;
+        }
+        .vm-item h3 {
+            font-size: 24px;
+            color: #D2691E;
+            margin-bottom: 15px;
+        }
+
+        /* Keunggulan */
+        .advantages {
+            background-color: #f9f9f9;
+        }
+        .advantages-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+        }
+        .advantage-item {
+            text-align: center;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+        .advantage-item h3 {
+            font-size: 20px;
+            color: #D2691E;
+            margin-bottom: 10px;
+        }
+
+        /* Testimoni */
+        .testimonials {
+            background-color: #fff;
+        }
+        .testimonial-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+        .testimonial-card {
+            background-color: #f9f9f9;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+        .testimonial-card p {
+            font-style: italic;
+            margin-bottom: 10px;
+        }
+        .testimonial-card .author {
+            font-weight: bold;
+            color: #D2691E;
+        }
+
+        /* Kontak */
+        .contact {
+            background-color: #f9f9f9;
+        }
+        .contact-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+        }
+        .contact-info {
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+        .contact-info h3 {
+            font-size: 24px;
+            color: #D2691E;
+            margin-bottom: 15px;
+        }
+        .contact-info p {
+            margin-bottom: 10px;
+        }
+        .contact-form {
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+        .contact-form input, .contact-form textarea {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+        .contact-form button {
+            background-color: #D2691E;
+            color: #fff;
+            padding: 12px 24px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+        .contact-form button:hover {
+            background-color: #FFD700;
+        }
+
+        /* Footer */
+        footer {
+            background-color: #D2691E;
+            color: #fff;
+            text-align: center;
+            padding: 20px 0;
+        }
+
+        /* Animasi */
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        @keyframes slideUp {
+            from { transform: translateY(50px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+
+        /* Responsif */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+                flex-direction: column;
+                position: absolute;
+                top: 60px;
+                right: 0;
+                background-color: #D2691E;
+                width: 200px;
+                padding: 20px;
+            }
+            .nav-links.active {
+                display: flex;
+            }
+            .menu-toggle {
+                display: flex;
+            }
+            .hero h1 {
+                font-size: 32px;
+            }
+            .hero p {
+                font-size: 16px;
+            }
+            .about-content {
+                flex-direction: column;
+            }
+            .vm-grid {
+                grid-template-columns: 1fr;
+            }
+            .contact-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav class="container">
+            <div class="logo">Angle</div>
+            <ul class="nav-links">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#about">Tentang Kami</a></li>
+                <li><a href="#products">Produk</a></li>
+                <li><a href="#vision-mission">Visi & Misi</a></li>
+                <li><a href="#contact">Kontak</a></li>
+            </ul>
+            <div class="menu-toggle" onclick="toggleMenu()">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </nav>
+    </header>
+
+    <section id="home" class="hero">
+        <div class="container">
+            <h1>Rasakan Kesehatan Alami dengan Angle</h1>
+            <p>Produk makanan herbal berkualitas tinggi untuk gaya hidup sehat dan alami.</p>
+            <a href="#products" class="btn">Jelajahi Produk</a>
+        </div>
+    </section>
+
+    <section id="about" class="about">
+        <div class="container">
+            <h2>Tentang Brand Angle</h2>
+            <div class="about-content">
+                <div class="about-text">
+                    <p>Angle adalah perusahaan yang didirikan pada tahun 2015 dengan visi untuk menyediakan makanan herbal alami yang berkualitas tinggi. Kami percaya bahwa kesehatan dimulai dari bahan-bahan alami seperti jahe dan lemon, yang telah digunakan selama berabad-abad untuk manfaat kesehatan.</p>
+                    <p>Identitas brand kami tercermin dalam komitmen terhadap keaslian, inovasi, dan keamanan. Setiap produk Angle dibuat dengan bahan-bahan organik pilihan, tanpa bahan kimia tambahan, untuk memastikan Anda mendapatkan yang terbaik dari alam.</p>
+                </div>
+                <div class="about-image">
+                    <img src="https://via.placeholder.com/500x300/FFD700/D2691E?text=Angle+Brand" alt="Gambar Brand Angle">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="products" class="products">
+        <div class="container">
+            <h2>Produk Kami</h2>
+            <div class="product-grid">
+                <div class="product-card">
+                    <img src="https://via.placeholder.com/300x200/D2691E/FFD700?text=Teh+Jahe+Lemon" alt="Teh Jahe Lemon">
+                    <h3>Teh Jahe Lemon</h3>
+                    <p class="highlights">Keunggulan: Antioksidan tinggi, Meningkatkan imunitas</p>
+                    <p>Teh herbal ini terbuat dari jahe segar dan lemon alami, memberikan rasa segar dan manfaat kesehatan seperti meningkatkan sistem kekebalan tubuh dan membantu pencernaan.</p>
+                </div>
+                <div class="product-card">
+                    <img src="https://via.placeholder.com/300x200/D2691E/FFD700?text=Suplemen+Herbal" alt="Suplemen Herbal">
+                    <h3>Suplemen Herbal Jahe</h3>
+                    <p class="highlights">Keunggulan: Alami 100%, Mudah dikonsumsi</p>
+                    <p>Suplemen ini mengandung ekstrak jahe murni dalam kapsul, ideal untuk orang sibuk yang ingin mendapatkan manfaat anti-inflamasi dan peningkatan energi tanpa repot.</p>
+                </div>
+                <div class="product-card">
+                    <img src="https://via.placeholder.com/300x200/D2691E/FFD700?text=Jus+Lemon+Herbal" alt="Jus Lemon Herbal">
+                    <h3>Jus Lemon Herbal</h3>
+                    <p class="highlights">Keunggulan: Vitamin C tinggi, Detoksifikasi</p>
+                    <p>Jus ini dikombinasikan dengan bahan herbal lainnya untuk memberikan dorongan vitamin C dan membantu proses detoksifikasi tubuh secara alami.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="vision-mission" class="vision-mission">
+        <div class="container">
+            <h2>Visi & Misi Perusahaan</h2>
+            <div class="vm-grid">
+                <div class="vm-item">
+                    <h3>Visi</h3>
+                    <p>Menjadi pemimpin global dalam penyediaan makanan herbal alami yang inovatif, berkontribusi pada gaya hidup sehat masyarakat dunia melalui produk-produk berkualitas tinggi dan berkelanjutan.</p>
+                </div>
+                <div class="vm-item">
+                    <h3>Misi</h3>
+                    <p>Menyediakan produk makanan herbal yang aman, efektif, dan terjangkau; Mendorong inovasi dalam pengolahan bahan alami; Membangun komunitas yang peduli kesehatan melalui edukasi dan kemitraan; Memastikan praktik bisnis yang etis dan ramah lingkungan.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="advantages">
+        <div class="container">
+            <h2>Keunggulan Brand Angle</h2>
+            <div class="advantages-list">
+                <div class="advantage-item">
+                    <h3>Kualitas Tinggi</h3>
+                    <p>Kami hanya menggunakan bahan-bahan organik pilihan untuk memastikan setiap produk memenuhi standar kesehatan tertinggi.</p>
+                </div>
+                <div class="advantage-item">
+                    <h3>Inovasi Berkelanjutan</h3>
+                    <p>Tim kami terus berinovasi untuk menciptakan produk baru yang menggabungkan tradisi herbal dengan teknologi modern.</p>
+                </div>
+                <div class="advantage-item">
+                    <h3>Keamanan Terjamin</h3>
+                    <p>Setiap produk melalui pengujian ketat untuk memastikan keamanan dan efektivitas, tanpa bahan kimia berbahaya.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="testimonials">
+        <div class="container">
+            <h2>Testimoni Pelanggan</h2>
+            <div class="testimonial-grid">
+                <div class="testimonial-card">
+                    <p>"Teh Jahe Lemon dari Angle benar-benar menyegarkan dan membantu saya tetap sehat selama musim flu. Sangat direkomendasikan!"</p>
+                    <p class="author">- Sari, Jakarta</p>
+                </div>
+                <div class="testimonial-card">
+                    <p>"Suplemen herbalnya mudah diminum dan saya merasakan peningkatan energi sehari-hari. Produk alami yang berkualitas."</p>
+                    <p class="author">- Budi, Surabaya</p>
+                </div>
+                <div class="testimonial-card">
+                    <p>"Jus Lemon Herbal sangat membantu detoksifikasi tubuh saya. Rasa alami dan manfaatnya luar biasa."</p>
+                    <p class="author">- Lina, Bandung</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact" class="contact">
+        <div class="container">
+            <h2>Kontak & Lokasi</h2>
+            <div class="contact-grid">
+                <div class="contact-info">
+                    <h3>Informasi Kontak</h3>
+                    <p><strong>Alamat:</strong> Jl. Herbal No. 123, Kota Sehat, Indonesia</p>
+                    <p><strong>Email:</strong> info@angle.com</p>
+                    <p><strong>Nomor WA:</strong> +62 812-3456-7890</p>
+                    <p><strong>Social Media:</strong> @angleherbal (Instagram, Facebook)</p>
+                </div>
+                <div class="contact-form">
+                    <h3>Hubungi Kami</h3>
+                    <form action="#" method="post">
+                        <input type="text" name="name" placeholder="Nama Anda" required>
+                        <input type="email" name="email" placeholder="Email Anda" required>
+                        <textarea name="message" placeholder="Pesan Anda" rows="5" required></textarea>
+                        <button type="submit">Kirim Pesan</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2023 Angle. Semua hak dilindungi. Makanan Herbal Alami untuk Kesehatan Anda.</p>
+        </div>
+    </footer>
+
+    <script>
+        function toggleMenu() {
+            const navLinks = document.querySelector('.nav-links');
+           
